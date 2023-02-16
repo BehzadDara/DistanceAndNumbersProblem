@@ -78,7 +78,7 @@ namespace DistanceAndNumbersProblem.Test
             Assert.IsTrue(IsEqual(trueResult, result));
         }
 
-        private bool IsEqual(List<List<int>> first, List<List<int>> second)
+        private static bool IsEqual(List<List<int>> first, List<List<int>> second)
         {
             if(first.Count != second.Count)
                 return false;

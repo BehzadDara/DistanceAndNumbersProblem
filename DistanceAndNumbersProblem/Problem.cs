@@ -68,9 +68,11 @@ public class Problem
 
         if (currentPosition < list.Count - currentN - 1 && list[currentPosition] == 0 && list[currentPosition + currentN + 1] == 0)
         {
-            var tmpList = new List<int>(list);
-            tmpList[currentPosition] = currentN;
-            tmpList[currentPosition + currentN + 1] = currentN;
+            var tmpList = new List<int>(list)
+            {
+                [currentPosition] = currentN,
+                [currentPosition + currentN + 1] = currentN
+            };
 
             if (!tmpList.Any(x => x == 0))
             {
@@ -93,10 +95,7 @@ public class Problem
     {
         Console.WriteLine($"Total {result.Count} configurations possible.");
 
-        foreach (var item in result)
-        {
-            Console.WriteLine("{" + string.Join(", ", item) + "}");
-        }
+        result.ForEach(item => Console.WriteLine("{" + string.Join(", ", item) + "}"));
 
         Console.WriteLine($"Total {result.Count} configurations possible.");
     }
