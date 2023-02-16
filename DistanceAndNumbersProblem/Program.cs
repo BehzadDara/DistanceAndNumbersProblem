@@ -40,7 +40,7 @@ public class Program
 {
     public static void Main()
     {
-        new Problem(4).Solve();
+        new Problem(7).Solve();
     }
 }
 
