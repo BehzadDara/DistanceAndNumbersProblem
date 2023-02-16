@@ -44,7 +44,7 @@ public class Problem
         var result = new List<List<int>>();
         for (var i = 0; i < n - 1; i++)
         {
-            var list = FindCombination(EmptyList, n, i);
+            var list = FindCombinations(EmptyList, n, i);
             result.AddRange(list);
         }
 
