@@ -95,12 +95,12 @@ public class Problem
 
     private static void PrintResult(List<List<int>> result)
     {
-        Console.WriteLine($"Total {result.Count} configurations possible.");
-
         foreach (var item in result)
         {
             Console.WriteLine("{" + string.Join(", ", item) + "}");
         }
+
+        Console.WriteLine($"Total {result.Count} configurations possible.");
     }
 
 }
