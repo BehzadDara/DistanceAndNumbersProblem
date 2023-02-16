@@ -12,22 +12,29 @@ namespace DistanceAndNumbersProblem;
 
 public class Problem
 {
-    private const int n = 7;
+    #region Init
 
-    private static List<int> EmptyList
+    private readonly int _n;
+
+    public Problem(int n)
+    {
+        _n = n;
+    }
+
+    private List<int> EmptyList
     {
         get
         {
             var list = new List<int>();
-            list.AddRange(Enumerable.Repeat(0, 2 * n));
+            list.AddRange(Enumerable.Repeat(0, 2 * _n));
             return list;
         }
     }
 
-    public static void Solve()
+    public List<List<int>> Solve()
     {
         #region Begin
-        Console.WriteLine($"Combinations of elements satisfying given constraints for n = {n}:");
+        Console.WriteLine($"Combinations of elements satisfying given constraints for n = {_n}:");
         #endregion
 
         #region Solve
@@ -36,15 +43,19 @@ public class Problem
 
         #region End
         PrintResult(result);
+        return result;
         #endregion
     }
 
-    private static List<List<int>> FindAllCombinations()
+    #endregion
+
+    #region Solution
+    private List<List<int>> FindAllCombinations()
     {
         var result = new List<List<int>>();
-        for (var i = 0; i < n - 1; i++)
+        for (var i = 0; i < _n - 1; i++)
         {
-            var list = FindCombinations(EmptyList, n, i);
+            var list = FindCombinations(EmptyList, _n, i);
             result.AddRange(list);
         }
 
@@ -61,20 +72,22 @@ public class Problem
             tmpList[currentPosition] = currentN;
             tmpList[currentPosition + currentN + 1] = currentN;
 
-            if(!tmpList.Any(x => x == 0))
+            if (!tmpList.Any(x => x == 0))
             {
                 result.Add(tmpList);
                 return result;
             }
 
-            for(var i = 0; i< tmpList.Count; i++)
+            for (var i = 0; i < tmpList.Count; i++)
             {
                 result.AddRange(FindCombinations(tmpList, currentN - 1, i));
             }
         }
-            
+
         return result;
     }
+
+    #endregion
 
     private static void PrintResult(List<List<int>> result)
     {
@@ -89,4 +102,3 @@ public class Problem
     }
 
 }
-
