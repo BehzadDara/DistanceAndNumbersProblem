@@ -68,21 +68,21 @@ public class Problem
 
         if (currentPosition < list.Count - currentN - 1 && list[currentPosition] == 0 && list[currentPosition + currentN + 1] == 0)
         {
-            var tmpList = new List<int>(list)
+            list = new List<int>(list)
             {
                 [currentPosition] = currentN,
                 [currentPosition + currentN + 1] = currentN
             };
 
-            if (!tmpList.Any(x => x == 0))
+            if (!list.Any(x => x == 0))
             {
-                result.Add(tmpList);
+                result.Add(list);
                 return result;
             }
 
-            for (var i = 0; i < tmpList.Count; i++)
+            for (var i = 0; i < list.Count; i++)
             {
-                result.AddRange(FindCombinations(tmpList, currentN - 1, i));
+                result.AddRange(FindCombinations(list, currentN - 1, i));
             }
         }
 
