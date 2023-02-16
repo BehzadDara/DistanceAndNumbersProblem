@@ -69,14 +69,7 @@ public class Problem
 
             for(var i = 0; i< tmpList.Count; i++)
             {
-                foreach (var item in FindCombinations(tmpList, currentN - 1, i))
-                {
-                    if (!item.Any(x => x == 0))
-                    {
-                        var tmpItem = new List<int>(item);
-                        result.Add(tmpItem);
-                    }
-                }
+                result.AddRange(FindCombinations(tmpList, currentN - 1, i));
             }
         }
             
