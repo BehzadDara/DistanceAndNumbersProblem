@@ -51,46 +51,36 @@ public class Problem
         return result;
     }
 
-    private static List<List<int>> FindCombination(List<int> list, int currentN, int currentPosition)
+    private static List<List<int>> FindCombinations(List<int> list, int currentN, int currentPosition)
     {
         var result = new List<List<int>>();
 
         if (currentPosition < list.Count - currentN - 1 && list[currentPosition] == 0 && list[currentPosition + currentN + 1] == 0)
         {
-            list[currentPosition] = currentN;
-            list[currentPosition + currentN + 1] = currentN;
-            if(!list.Any(x => x == 0))
+            var tmpList = new List<int>(list);
+            tmpList[currentPosition] = currentN;
+            tmpList[currentPosition + currentN + 1] = currentN;
+
+            if(!tmpList.Any(x => x == 0))
             {
-                result.Add(list);
+                result.Add(tmpList);
                 return result;
             }
 
-            for(var i = 0; i< list.Count; i++)
+            for(var i = 0; i< tmpList.Count; i++)
             {
-                list = ClearList(list, currentN - 1);
-
-                foreach (var item in FindCombination(list, currentN - 1, i))
+                foreach (var item in FindCombinations(tmpList, currentN - 1, i))
                 {
                     if (!item.Any(x => x == 0))
                     {
-                        var tmp = new List<int>(item);
-                        result.Add(tmp);
+                        var tmpItem = new List<int>(item);
+                        result.Add(tmpItem);
                     }
                 }
             }
         }
             
         return result;
-    }
-
-    private static List<int> ClearList(List<int> list, int nextCurrent)
-    {
-        for (var i = 0; i < list.Count; i++)
-        {
-            if (list[i] <= nextCurrent)
-                list[i] = 0;
-        }
-        return list;
     }
 
     private static void PrintResult(List<List<int>> result)
